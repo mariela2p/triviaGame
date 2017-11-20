@@ -1,0 +1,57 @@
+
+body{
+background: black;
+}
+
+.header{
+	
+	height: 220px;
+	text-align: center;
+	margin-top: 70px;
+}
+@font-face{
+    font-family: LivingHell;
+    src: url(livingHell.ttf);  
+}
+#title{
+  color: #810a1b;
+  font-size: 70px;
+  font-family: LivingHell;
+  letter-spacing: 10px;
+}
+#question{
+  font-family: "Helvetica";
+  color: #810a1b;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+.container {
+ 
+ height: 800px;
+ width: 1250px;
+
+
+}
+.tvImg{
+  background: url(img/tv.png);
+  height: 400px;
+  position: ;
+  background-repeat: no-repeat;
+  margin-bottom: 30px;
+}
+
+.giphy {
+  background: url(img/0.gif);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 65%;
+
+}
+
+#questionsSection{
+  text-align: center;
+  background-position: center;
+  
+
+}
