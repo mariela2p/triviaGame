@@ -1,6 +1,6 @@
 var questions = [
     {
-        gifQuestion: "1.gif",
+        gifQuestion: "assets/img/1.gif",
         answers: ["The Ring", "Devil's Backbone", "The Sixth Sence", "House of 1000 Corpes"],
         correctAns: "Devil's Backbone"
     };
@@ -10,7 +10,7 @@ var questions = [
         correctAns: "Night of the Living Dead"
     };
     {
-        gifQuestion: "assets/img/3.gif",
+        gifQuestion: "3.gif",
         answers: ["The Cabin in the Woods", "The Host", "28 Days Later", "Get Out"],
         correctAns: "Get Out"
     };
@@ -44,64 +44,68 @@ var questions = [
         answers: ["The Sixth Sence", "The Strangers", "Paranormal Activity", "The Others"],
         correctAns: "Paranormal Activity"
     };
-     {
-        gifQuestion: "10.gif",
-        answers: ["Fear the Clowns", "It", "Killjoy", "Poltergeist"],
-        correctAns: "It"
-    };
     {
-        gifQuestion: "11.gif",
+        gifQuestion: "10.gif",
         answers: ["The Blair Witch Project", "The Tunnel", "As Above, So Bellow", "Evidence"],
         correctAns: "As Above, So Bellow"
     };
      {
-        gifQuestion: "12.gif",
+        gifQuestion: "11.gif",
         answers: ["Rosemary's Baby", "The Exorsist", "Night of the Demon", "Poltergeist"],
         correctAns: "The Exorsist"
     };
     {
-        gifQuestion: "13.gif",
+        gifQuestion: "12.gif",
         answers: ["The Conjuring", "The Haunting", "Oculus", "Darkness"],
         correctAns: "The Conjuring"
     };
     {
-        gifQuestion: "14.gif",
+        gifQuestion: "13.gif",
         answers: ["The Visit", "Insidious", "Ouija", "Sinister"],
         correctAns: "Sinister"
     };
     {
-        gifQuestion: "15.gif",
+        gifQuestion: "14.gif",
         answers: ["The Strangers", "Urban Legend", "Near Dark", "Misery"],
         correctAns: "Misery"
     };
     {
-        gifQuestion: "16.gif",
+        gifQuestion: "15.gif",
         answers: ["From Dusk Till Dawn", "Innocent Blood", "Fright Night", "Planet Terror"],
         correctAns: "From Dusk Till Dawn"
     };
-    {
-        gifQuestion: "17.gif",
-        answers: ["The Blackcoat's Daughter", "Lights Out", "The Babadook", "It Follows"],
-        correctAns: "The Babadook"
-    };
-	{
-        gifQuestion: "18.gif",
-        answers: ["The Forest", "The Hallow", "The Antichrist", "The Cabin in the Woods"],
-        correctAns: "The Antichrist"
-    };
-    {
-        gifQuestion: "19.gif",
-        answers: ["Insidious", "The Woman in Black", "The Conjuring 2", "The American Haunting"],
-        correctAns: "Insidious"
-    }{
-        gifQuestion: "20.gif",
-        answers: ["Unrest", "Don't Look Up", "The Bye Bye Man", "It Follows"],
-        correctAns: "It Follows"
-    };
+	
 ]
+var correct = 0;
+    var incorrect = 0;
+    var qCounter = 0;
+    var userPick = "";
+    var timer;
+    var beginSound = new Audio("./sounds/lostSouls.mp3");
+
+$(document).ready(function() {
+    
+    beginSound.play();
+
+   $("#startBtn").click(function() {
+        createQuestion();
 
 
 
 
 
-    <img src="assets/img/ + questions[0].gif">
+
+
+    function createQuestion() {
+        $("#startBtn").hide();
+        $("#giphy").html(questions.gifQuestion);
+        countDown(10, "timer");
+        $("#answerDiv").html("");
+       } 
+        
+        
+
+
+});
+
+   // <img src="assets/img/ + questions[0].gif">

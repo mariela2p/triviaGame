@@ -34,7 +34,7 @@ background: black;
 
 }
 .tvImg{
-  background: url(img/tv.png);
+  background: url(tv.png);
   height: 400px;
   position: ;
   background-repeat: no-repeat;
@@ -42,16 +42,17 @@ background: black;
 }
 
 .giphy {
-  background: url(img/0.gif);
+  background: url(0.gif);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 65%;
+  padding-top: 50px;
 
 }
 
-#questionsSection{
+#quizArea{
   text-align: center;
   background-position: center;
-  
-
+  color: #810a1b;
 }
+
