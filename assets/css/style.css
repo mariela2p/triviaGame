@@ -7,7 +7,7 @@ background: black;
 	
 	height: 220px;
 	text-align: center;
-	margin-top: 70px;
+	margin-top: 60px;
 }
 @font-face{
     font-family: LivingHell;
@@ -42,11 +42,11 @@ background: black;
 }
 
 .giphy {
-  background: url(0.gif);
+  background-image: url(0.gif);
   background-repeat: no-repeat;
   background-position: left;
   background-size: 65%;
-  padding-top: 50px;
+  padding-top: 60px;
 
 }
 
@@ -56,3 +56,17 @@ background: black;
   color: #810a1b;
 }
 
+.userGuess{
+ padding: 10px 20px;
+ margin: 10px; 
+ background: #810a1b;
+ color: white;
+ font-family: "Helvetica";
+ font-size: 20px;
+ border-color: black;
+ font-weight: 300;
+}
+
+#timer{
+  margin-top: 100px;
+}

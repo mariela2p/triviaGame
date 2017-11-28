@@ -36,7 +36,7 @@ var questions = [
     },
     {
         gifQuestion: "assets/img/8.gif",
-        guessess: ["Night of the Demons", "The Hunger", "Sinister", "HellRaiser"],
+        guesses: ["Night of the Demons", "The Hunger", "Sinister", "HellRaiser"],
         correctAns: "HellRaiser"
     },
     {
@@ -80,26 +80,10 @@ var questions = [
 	var correct = 0;
     var incorrect = 0;
     var qCounter = 0;
-    var userPick = "";
+    var clickedAns; 
     var timer;
     var music = new Audio("assets/sounds/lostSouls.mp3");
-
-//Create count down. If time runs out increase by 1 incorrect answers 
-
-function countDown(secs, elem) {
-
-        $("#timer").html(secs + " seconds");
-        secs--;
-        if (secs <= 0) {
-            clearTimeout(timer);
-            incorrect++;
-            $("#errors").html("errors-" + incorrect);
-         	createQuestion(qCounter++);
-            
-		}
- timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000);
-
-}
+    
 
 
 $(document).ready(function(){
@@ -109,29 +93,97 @@ $(document).ready(function(){
 	$("#errors").hide();
     $("#accepted").hide();
 
+//Create count down. If time runs out increase by 1 incorrect answers 
+
+    function countDown(secs, elem) {
+
+        $("#timer").html(secs + " seconds");
+        secs--;
+        if (secs <= 0) {
+            clearTimeout(timer);
+            incorrect++;
+            $("#errors").html("errors-" + incorrect);
+         	createQuestion(qCounter++);
+         	
+            
+		}
+ timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000);
+
+}
+
 //Use start button to show the questions
-$("#startBtn").on("click",function() {
+	$("#startBtn").on("click",function() {
         
 		createQuestion();
         
-});
+	});
 
-function createQuestion() {
-    $("#startBtn").hide();
-    $("#errors").show();
-    $("#accepted").show();
-    countDown(15, "timer");
- 	
-   $("#giphy").attr(questions[qCounter].gifQuestion); 
+	function createQuestion() {
+	    $("#startBtn").hide();
+	    $("#errors").show();
+	    $("#accepted").show();
+	    countDown(15, "timer");
+	 	
+	   $(".giphy").css('background-image', `url(${questions[qCounter].gifQuestion}` );
+	    
+	    for (var i = 0; i < questions[qCounter].guesses.length; i++) {
+	    	$('<button class="userGuess">').val(questions[qCounter].guesses[i]).html(questions[qCounter].guesses[i]).appendTo("#answersArea");}
+	        $(".userGuess" ).click(function(event) {
+	        	clearTimeout(timer);
+		    	clickedAns = $(this).val();
+		  		//alert(clickedAns);
+				checkAnswer();
+		  	});  	
+	} 
+
+	 function checkAnswer(){
+				if (qCounter === 15) {
+	            	//checkScore();
+	           		gameOver();
+	        		}
+
+				else if (clickedAns === questions[qCounter].correctAns){
+					correct++;
+					//alert ("correct");
+					$("#accepted").html("valid-" + correct);
+		            newQuestion();
+				    }
+
+				else  {
+					incorrect++;
+					//alert ("incorrect");
+					$("#errors").html("errors-" + incorrect);
+		            newQuestion();
+				   	}
+			}
+	
+	 function newQuestion(){
+	 	$(".userGuess" ).hide();
+	 	createQuestion(qCounter++);
+		clearTimeout(timer);
+	 }
+
+	function timeOut(){
+        clearTimeout(timer);
+        incorrect++;
+        createQuestion(qCounter++);
+    }
     
-    for (var i = 0; i < questions[qCounter].guesses.length; i++) {
-    	$('<button class="userGuess">').val(questions[qCounter].guesses[i]).html(questions[qCounter].guesses[i]).appendTo("#answersArea");
-           
-            $("#userGuess")
+
+    
+    function gameOver() {
+        $("#results").html("You got " + correct + " correct, and " + incorrect + " incorrect");
+        $("#gameBtn").show();
+        $("#gameBtn").html("play again");
+        $("#gameBtn").on("click", function() {
+            location.reload();
+    
+
+        });
+
+    }
 
 
-    	};
-    } 
 
 });
 
