@@ -83,24 +83,13 @@ var questions = [
     var clickedAns; 
     var timer;
     var music = new Audio("assets/sounds/lostSouls.mp3");
-    
+    var countDown;
 //Create count down. If time runs out increase by 1 incorrect answers 
 
-    function countDown(secs, elem) {
-		$("#timer").html(secs + " seconds");
-        secs--;
-        timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000);
-        if (secs <= 0) {
-            clearTimeout(timer);
-            incorrect++;
-            $("#errors").html("errors-" + incorrect);
-         	createQuestion(qCounter++);
-         	newQuestion();
-            
-		}
+    
  
 
-}
+
 
 $(document).ready(function(){
 //call the audio file from the start
@@ -109,7 +98,17 @@ $(document).ready(function(){
 	$("#errors").hide();
     $("#accepted").hide();
 
-
+countDown = function(secs, elem) {
+		$("#timer").html(secs + " seconds");
+        secs--;
+        timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000);
+        if (secs <= 0) {
+            clearTimeout(timer);
+            incorrect++;
+            $("#errors").html("errors-" + incorrect);
+         	timeOut();
+         }
+		};
 
 //Use start button to show the questions
 	$("#startBtn").on("click",function() {
@@ -137,9 +136,10 @@ $(document).ready(function(){
 	} 
 
 	 function checkAnswer(){
-				if (qCounter === 15) {
+				if (qCounter === 14) {
 	            	checkScore();
 	           		gameOver();
+
 	        		}
 
 				else if (clickedAns === questions[qCounter].correctAns){
@@ -161,12 +161,14 @@ $(document).ready(function(){
 	 	$(".userGuess" ).hide();
 	 	createQuestion(qCounter++);
 		clearTimeout(timer);
-	 }
+		countDown(15, "timer");
 
-	 function timeOut(){
+	 }
+	function timeOut(){
         clearTimeout(timer);
         incorrect++;
         newQuestion();
+
     }
     
 
@@ -187,21 +189,23 @@ $(document).ready(function(){
  function checkScore() {
         $("#errors").hide();
         $("#accepted").hide();
+        $("#timer").hide();
+        $("#answersArea").hide();
         
         if (correct === 0) {
             $("#checkScore").html("You really suck at this...");
         }
         if (correct >= 1 && correct <= 3) {
-            $("#answerDiv").html("Mmm, not great");
+            $("#checkScore").html("Mmm, not great");
         }
         if (correct >= 4 && correct <= 7) {
-            $("#answerDiv").html("Not bad at all. Try not to get any calls today");
+            $("#checkScore").html("Not bad at all. Try not to get any phone calls today");
         }
         if (correct >= 8 && correct <= 12) {
-            $("#answerDiv").html("Very impressive. But can you watch horror movies alone?");
+            $("#checkScore").html("Very impressive. But can you watch horror movies alone?");
         }
         if (correct >= 13 && correct <= 15) {
-            $("#answerDiv").html("Amazing! You probably can watch horror movies before going to bed");
+            $("#checkScore").html("Amazing! You probably can watch horror movies before going to bed");
         }
     }
 
